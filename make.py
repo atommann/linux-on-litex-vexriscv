@@ -280,22 +280,35 @@ class De0Nano(Board):
         prog = self.platform.create_programmer()
         prog.load_bitstream("build/de0nano/gateware/top.sof")
 
+# LogicField325 support ----------------------------------------------------------------------------
+
+class LogicField325(Board):
+    def __init__(self):
+        from litex_boards.targets import logicfield325
+        Board.__init__(self, logicfield325.BaseSoC, {"serial"})
+
+    def load(self):
+        prog = self.platform.create_programmer()
+        prog.load_bitstream("build/logicfield325/gateware/top.bit")
+
+
 # Main ---------------------------------------------------------------------------------------------
 
 supported_boards = {
     # Xilinx
-    "arty":         Arty,
-    "arty_a7":      ArtyA7,
-    "arty_s7":      ArtyS7,
-    "netv2":        NeTV2,
-    "genesys2":     Genesys2,
-    "kc705":        KC705,
-    "kcu105":       KCU105,
-    "zcu104":       ZCU104,
-    "nexys4ddr":    Nexys4DDR,
-    "nexys_video":  NexysVideo,
-    "minispartan6": MiniSpartan6,
-    "pipistrello":  Pipistrello,
+    "arty":          Arty,
+    "arty_a7":       ArtyA7,
+    "arty_s7":       ArtyS7,
+    "netv2":         NeTV2,
+    "genesys2":      Genesys2,
+    "kc705":         KC705,
+    "kcu105":        KCU105,
+    "zcu104":        ZCU104,
+    "nexys4ddr":     Nexys4DDR,
+    "nexys_video":   NexysVideo,
+    "minispartan6":  MiniSpartan6,
+    "pipistrello":   Pipistrello,
+    "logicfield325": LogicField325,
 
     # Lattice
     "versa_ecp5":   VersaECP5,
@@ -427,3 +440,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
